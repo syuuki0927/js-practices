@@ -1,6 +1,9 @@
 #! /usr/bin/env node
 
-for (let i = 1; i <= 20; i++) {
+const from = 1,
+  to = 20;
+
+for (let i = from; i <= to; i++) {
   if (i % 15 === 0) {
     console.log("FizzBuzz");
   } else if (i % 5 === 0) {

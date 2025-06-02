@@ -1,43 +1,22 @@
 import sqlite3 from "sqlite3";
-
+import { get, run } from "./utils/sql_functions.js";
 const db = new sqlite3.Database(":memory:");
-
-const run = (sql) =>
-  new Promise((resolve, reject) => {
-    return db.run(sql, (err) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-  });
-
-const get = (sql) =>
-  new Promise((resolve, reject) =>
-    db.get(sql, (err, row) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(row);
-      }
-    }),
-  );
 
 const main = async () => {
   try {
     await run(
+      db,
       "CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE);",
     );
     try {
-      await run("INSERT INTO books(title) VALUES (null)");
-      const id_row = await get("SELECT last_insert_rowid();");
+      await run(db, "INSERT INTO books(title) VALUES (null)");
+      const id_row = await get(db, "SELECT last_insert_rowid();");
       console.log(id_row["last_insert_rowid()"]);
     } catch (err) {
       console.error(err);
     }
     try {
-      const inserted_row = await get("SELECT memo FROM books;");
+      const inserted_row = await get(db, "SELECT memo FROM books;");
       console.log(inserted_row);
     } catch (err) {
       console.error(err);
@@ -45,7 +24,7 @@ const main = async () => {
   } catch (err) {
     console.error(err);
   } finally {
-    await run("DROP TABLE books");
+    await run(db, "DROP TABLE books");
   }
 };
 

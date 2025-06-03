@@ -13,17 +13,17 @@ const argv = minimist(process.argv.slice(2), {
   },
 });
 
+const firstDay = DateTime.local(argv.y, argv.m, 1);
 const weekline_length = [...Array(WEEKDAYS_NUM)]
   .map(() => "01")
   .join(" ").length;
 
-const firstLineStr = `${argv.m}月 ${argv.y}`;
+const firstLineStr = `${firstDay.monthLong} ${argv.y}`;
 const bufferNum = Math.floor((weekline_length - firstLineStr.length) / 2);
 console.log(" ".repeat(bufferNum) + firstLineStr + " ".repeat(bufferNum));
 
-console.log("日 月 火 水 木 金 土");
+console.log("Su Mo Tu We Th Fr Sa");
 
-const firstDay = DateTime.local(argv.y, argv.m, 1);
 let currentDay = firstDay;
 let weekDays = [...Array(currentDay.weekday % WEEKDAYS_NUM)].map(() => "  ");
 

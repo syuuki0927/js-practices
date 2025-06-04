@@ -3,7 +3,10 @@
 import { DateTime } from "luxon";
 import minimist from "minimist";
 
+// 1行の長さは日付（2文字）* 7 + 間のスペース（1文字）* 6
+const LINE_LENGTH = 20;
 const WEEKDAYS_NUM = 7;
+
 const now = DateTime.now();
 
 const argv = minimist(process.argv.slice(2), {
@@ -15,11 +18,8 @@ const argv = minimist(process.argv.slice(2), {
 
 const firstDay = DateTime.local(argv.y, argv.m, 1);
 
-// 1行の長さは日付（2文字）* 7 + 間のスペース（1文字）* 6
-const weekLineLength = 20;
-
 const firstLine = `${firstDay.monthLong} ${firstDay.year}`;
-const margin = Math.floor((weekLineLength - firstLine.length) / 2);
+const margin = Math.floor((LINE_LENGTH - firstLine.length) / 2);
 console.log(`${" ".repeat(margin)}${firstLine}${" ".repeat(margin)}`);
 console.log("Su Mo Tu We Th Fr Sa");
 

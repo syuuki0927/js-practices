@@ -4,12 +4,12 @@ import { DateTime } from "luxon";
 import minimist from "minimist";
 
 const WEEKDAYS_NUM = 7;
+const now = DateTime.now();
 
 const argv = minimist(process.argv.slice(2), {
-  number: ["m", "y"],
   default: {
-    m: DateTime.now().month,
-    y: DateTime.now().year,
+    m: now.month,
+    y: now.year,
   },
 });
 
@@ -18,7 +18,7 @@ const weeklineLength = [...Array(WEEKDAYS_NUM)]
   .map(() => "01")
   .join(" ").length;
 
-const firstLine = `${firstDay.monthLong} ${argv.y}`;
+const firstLine = `${firstDay.monthLong} ${firstDay.year}`;
 const margin = Math.floor((weeklineLength - firstLine.length) / 2);
 console.log(" ".repeat(margin) + firstLine + " ".repeat(margin));
 

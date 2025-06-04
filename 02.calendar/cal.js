@@ -23,11 +23,10 @@ const margin = Math.floor((weekLineLength - firstLine.length) / 2);
 console.log(`${" ".repeat(margin)}${firstLine}${" ".repeat(margin)}`);
 console.log("Su Mo Tu We Th Fr Sa");
 
-let currentDay = firstDay;
-let weekDays = [...Array(currentDay.weekday % WEEKDAYS_NUM)].map(() => "  ");
+let weekDays = [...Array(firstDay.weekday % WEEKDAYS_NUM)].map(() => "  ");
 
 for (
-  currentDay = firstDay;
+  let currentDay = firstDay;
   currentDay < firstDay.plus({ month: 1 });
   currentDay = currentDay.plus({ days: 1 })
 ) {

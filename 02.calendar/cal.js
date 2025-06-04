@@ -14,13 +14,13 @@ const argv = minimist(process.argv.slice(2), {
 });
 
 const firstDay = DateTime.local(argv.y, argv.m, 1);
-const weekline_length = [...Array(WEEKDAYS_NUM)]
+const weeklineLength = [...Array(WEEKDAYS_NUM)]
   .map(() => "01")
   .join(" ").length;
 
-const firstLineStr = `${firstDay.monthLong} ${argv.y}`;
-const bufferNum = Math.floor((weekline_length - firstLineStr.length) / 2);
-console.log(" ".repeat(bufferNum) + firstLineStr + " ".repeat(bufferNum));
+const firstLine = `${firstDay.monthLong} ${argv.y}`;
+const margin = Math.floor((weeklineLength - firstLine.length) / 2);
+console.log(" ".repeat(margin) + firstLine + " ".repeat(margin));
 
 console.log("Su Mo Tu We Th Fr Sa");
 

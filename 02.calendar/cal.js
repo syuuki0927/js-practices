@@ -1,4 +1,4 @@
-#! usr/bin/env node
+#! /usr/bin/env node
 
 import { DateTime } from "luxon";
 import minimist from "minimist";

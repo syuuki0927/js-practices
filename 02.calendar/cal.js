@@ -14,14 +14,13 @@ const argv = minimist(process.argv.slice(2), {
 });
 
 const firstDay = DateTime.local(argv.y, argv.m, 1);
-const weeklineLength = [...Array(WEEKDAYS_NUM)]
-  .map(() => "01")
-  .join(" ").length;
+
+// 1行の長さは日付（2文字）* 7 + 間のスペース（1文字）* 6
+const weekLineLength = 20;
 
 const firstLine = `${firstDay.monthLong} ${firstDay.year}`;
-const margin = Math.floor((weeklineLength - firstLine.length) / 2);
-console.log(" ".repeat(margin) + firstLine + " ".repeat(margin));
-
+const margin = Math.floor((weekLineLength - firstLine.length) / 2);
+console.log(`${" ".repeat(margin)}${firstLine}${" ".repeat(margin)}`);
 console.log("Su Mo Tu We Th Fr Sa");
 
 let currentDay = firstDay;

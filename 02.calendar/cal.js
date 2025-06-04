@@ -27,13 +27,16 @@ console.log("Su Mo Tu We Th Fr Sa");
 let currentDay = firstDay;
 let weekDays = [...Array(currentDay.weekday % WEEKDAYS_NUM)].map(() => "  ");
 
-while (currentDay.ordinal < firstDay.plus({ month: 1 }).ordinal) {
+for (
+  currentDay = firstDay;
+  currentDay < firstDay.plus({ month: 1 });
+  currentDay = currentDay.plus({ days: 1 })
+) {
   weekDays.push(String(currentDay.day).padStart(2, " "));
   if (weekDays.length >= WEEKDAYS_NUM) {
     console.log(weekDays.join(" "));
     weekDays = [];
   }
-  currentDay = currentDay.plus({ days: 1 });
 }
 
 if (weekDays.length > 0) {

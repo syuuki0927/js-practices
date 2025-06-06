@@ -1,13 +1,13 @@
 #! /usr/bin/env node
 
-import { DateTime } from "luxon";
+import * as luxon from "luxon";
 import minimist from "minimist";
 
 // 1行の長さは日付（2文字）* 7 + 間のスペース（1文字）* 6
 const LINE_LENGTH = 20;
 const WEEKDAYS_NUM = 7;
 
-const now = DateTime.now();
+const now = luxon.DateTime.now();
 
 const argv = minimist(process.argv.slice(2), {
   default: {
@@ -16,7 +16,7 @@ const argv = minimist(process.argv.slice(2), {
   },
 });
 
-const firstDay = DateTime.local(argv.y, argv.m, 1);
+const firstDay = luxon.DateTime.local(argv.y, argv.m, 1);
 
 const firstLine = `${firstDay.monthLong} ${firstDay.year}`;
 const margin = Math.floor((LINE_LENGTH - firstLine.length) / 2);

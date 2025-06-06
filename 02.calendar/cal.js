@@ -19,8 +19,10 @@ const argv = minimist(process.argv.slice(2), {
 const firstDay = luxon.DateTime.local(argv.y, argv.m, 1);
 
 const firstLine = `${firstDay.monthLong} ${firstDay.year}`;
-const margin = Math.floor((LINE_LENGTH - firstLine.length) / 2);
-console.log(`${" ".repeat(margin)}${firstLine}${" ".repeat(margin)}`);
+const marginLength = Math.floor((LINE_LENGTH - firstLine.length) / 2);
+console.log(
+  `${" ".repeat(marginLength)}${firstLine}${" ".repeat(marginLength)}`,
+);
 console.log("Su Mo Tu We Th Fr Sa");
 
 let weekDays = [...Array(firstDay.weekday % WEEKDAYS_NUM)].map(() => "  ");

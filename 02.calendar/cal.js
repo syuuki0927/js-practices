@@ -20,9 +20,8 @@ const firstDay = luxon.DateTime.local(argv.y, argv.m, 1);
 
 const firstLine = `${firstDay.monthLong} ${firstDay.year}`;
 const marginLength = Math.floor((LINE_LENGTH - firstLine.length) / 2);
-console.log(
-  `${" ".repeat(marginLength)}${firstLine}${" ".repeat(marginLength)}`,
-);
+const margin = " ".repeat(marginLength);
+console.log(`${margin}${firstLine}${margin}`);
 console.log("Su Mo Tu We Th Fr Sa");
 
 let weekDays = [...Array(firstDay.weekday % WEEKDAYS_NUM)].map(() => "  ");
